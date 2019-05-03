@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express      = require('express');
 const path         = require('path');
 const favicon      = require('serve-favicon');
@@ -6,7 +7,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser   = require('body-parser');
 const mongoose     = require('mongoose')
 
-mongoose.connect('mongodb://localhost:27017/beers-api', {useNewUrlParser: true})
+mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true})
 
 const app = express();
 
