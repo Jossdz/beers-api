@@ -7,7 +7,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser   = require('body-parser');
 const mongoose     = require('mongoose')
 
-mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true})
+mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true});
 
 const app = express();
 
@@ -28,7 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const index = require('./routes/index');
 app.use('/', index);
-require('./routes/beerRoutes')(app)
+app.use('/beers', require('./routes/beerRoutes.js'));
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -48,8 +48,8 @@ app.use((err, req, res, next) => {
   res.render('error');
 });
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, console.log(`listening on ${PORT}`))
+app.listen(PORT, console.log(`App listening on ${PORT} ❤️`));
 
 module.exports = app;
